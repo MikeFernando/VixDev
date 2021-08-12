@@ -2,7 +2,7 @@ import { makeServer } from '../services/mirage';
 import { AppProps } from 'next/app';
 
 import '../styles/globals.scss';
-import { AuthProvider } from '../context/AuthContext';
+import { ActivityProvider } from '../context/ActivitiesContext';
 
 if (process.env.NODE_ENV === 'development') {
   makeServer();
@@ -10,9 +10,9 @@ if (process.env.NODE_ENV === 'development') {
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <AuthProvider >
+    <ActivityProvider >
       <Component {...pageProps} />
-    </AuthProvider>
+    </ActivityProvider>
   )
 }
 

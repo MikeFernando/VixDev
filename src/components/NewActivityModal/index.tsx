@@ -1,7 +1,7 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, useContext, useState } from 'react';
 import Modal from 'react-modal';
 
-import { api } from '../../services/api';
+import { ActivitiesContext } from '../../context/ActivitiesContext';
 
 import { Form, RadioBox, TypeStatus } from './styles';
 
@@ -11,26 +11,25 @@ type NewActivityModalProps = {
 }
 
 export function NewActivityModal({ isOpen, onRequestClose }: NewActivityModalProps) {
+  const { createActivity } = useContext(ActivitiesContext);
+
   const [ name, setName ] = useState('');
   const [ description, setDescription ] = useState('');
   const [ status, setStatus ] = useState('pending');
 
-  function handleNewActivity(event: FormEvent) {
+  async function handleNewActivity(event: FormEvent) {
     event.preventDefault();
-    
-    const data = {
+
+    await createActivity({
       name,
       description,
       status
-    }
-
-    api.post('/activities', data);
+    });
 
     setName('');
     setDescription('');
-    setStatus('');
+    setStatus('pending');
     onRequestClose();
-
   }
 
   return (

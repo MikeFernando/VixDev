@@ -1,28 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { AiFillClockCircle } from 'react-icons/ai';
 import { MdCancel } from 'react-icons/md';
 import { RiTaskFill } from 'react-icons/ri';
 import { FaEdit } from 'react-icons/fa';
 
-import { api } from '../../services/api';
+import { ActivitiesContext } from '../../context/ActivitiesContext';
+
 import { Container, Table } from './style';
 
-type Activities = {
-  id: number;
-  name: string;
-  description: string;
-  created_at: string;
-  status: string;
-}
-
 export function ActivitiesTable() {
-  const [ activities, setActivities ] = useState<Activities[]>([]);
-
-  useEffect(() => {
-    api.get('/activities').then(response => {
-      setActivities(response.data.activities);
-    });
-  }, []);
+  const { activities } = useContext(ActivitiesContext);
 
   return (
     <Container>

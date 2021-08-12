@@ -1,10 +1,10 @@
 import { useState, FormEvent, useContext } from "react";
-import { AuthContext } from "../../context/AuthContext";
+import { ActivitiesContext } from "../../context/ActivitiesContext";
 
 import styles from './styles.module.scss';
 
 export function SignIn() {
-  const { login } = useContext(AuthContext);
+  const { login } = useContext(ActivitiesContext);
 
   const [ email, setEmail ] = useState('');
   const [ password, setPassword ] = useState('');
