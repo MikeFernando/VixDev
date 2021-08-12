@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { FormEvent, useContext, useState } from 'react';
 import { AiFillClockCircle } from 'react-icons/ai';
 import { MdCancel } from 'react-icons/md';
 import { RiTaskFill } from 'react-icons/ri';
@@ -8,8 +8,38 @@ import { ActivitiesContext } from '../../context/ActivitiesContext';
 
 import { Container, Table } from './style';
 
+type SelectStatus = {
+  status: 'pending' | 'success' | 'canceled' ;
+}
+
+
 export function ActivitiesTable() {
   const { activities } = useContext(ActivitiesContext);
+  const [ typeStatus, setTypeStatus ] = useState<SelectStatus>();
+
+  const formattedActivities = activities.map(activity => {
+    return {
+      id: activity.id,
+      name: activity.name,
+      description: activity.description,
+      created_at: Intl.DateTimeFormat('pt-BR').format(new Date(activity.created_at)),
+      status:  activity.status === 'pending' ? 
+      (
+        activity.status && <AiFillClockCircle color='#61dcfb'  />
+
+      ) : activity.status === 'success' ? 
+      (
+        activity.status && <RiTaskFill color='#33cc95' />
+      ) : (
+        activity.status && <MdCancel color='#e52e54' />
+      )
+    }
+  })
+
+  function handleChangeStatus(event: FormEvent) {
+    event.preventDefault()
+
+  }
 
   return (
     <Container>
@@ -24,42 +54,37 @@ export function ActivitiesTable() {
           </tr>
         </thead>
         <tbody>
-          {activities.map(activity => {
+          {formattedActivities.map(activity => {
             return (
               <tr key={activity.id}>
                 <td>{activity.name}</td>
                 <td>{activity.description}</td>
-                <td>{Intl.DateTimeFormat('pt-BR').format(new Date(activity.created_at))}</td>
-                <td className="icons_status">{activity.status === 'pending' ? (
-                  activity.status && <AiFillClockCircle color='#61dcfb'  />
-                ) : activity.status === 'success' ? (
-                  activity.status && <RiTaskFill color='#33cc95' />
-                ) : (
-                  activity.status && <MdCancel color='#e52e54' />
-                )
-              }</td>
+                <td>{activity.created_at}</td>
+                <td className="icons_status">{activity.status}</td>
                 <td>
-                  <label htmlFor="status"></label>
-                  <select name="status" id="status">
-                    <option
-                      value={activity.status}
-                      onChange={() => {}}
-                    >
-                      PENDENTE
-                    </option>
-                    <option
-                      value={activity.status}
-                      onChange={() => {}}
-                    >
-                      CONCLUÍDA
-                    </option>
-                    <option
-                      value={activity.status}
-                      onChange={() => {}}
-                    >
-                      CANCELADA
-                    </option>
-                  </select>
+                  <form>
+                    <label htmlFor={activity.name}></label>
+                    <select name={activity.name} id={activity.name}>
+                      <option
+                        value="pending"
+                        onChange={handleChangeStatus}
+                      >
+                        PENDENTE
+                      </option>
+                      <option
+                        value="success"
+                        onChange={handleChangeStatus}
+                      >
+                        CONCLUÍDA
+                      </option>
+                      <option
+                        value="canceled"
+                        onChange={handleChangeStatus}
+                      >
+                        CANCELADA
+                      </option>
+                    </select>
+                  </form>
                 </td>
               </tr>
             );
