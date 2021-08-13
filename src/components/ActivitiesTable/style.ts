@@ -4,8 +4,6 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  
-  
 `;
 
 export const SearchBox = styled.label`
@@ -41,9 +39,76 @@ export const SearchBox = styled.label`
 ` 
 
 export const Table = styled.table`
+  max-width: 1120px;
   width: 100%;
   border-spacing: 0 0.7rem;
   margin-right: 1rem;
+
+  @media (max-width: 720px) {
+    label {
+      align-items: center;
+    }
+
+    thead {
+      display: none;
+    }
+
+    tr {
+      border-bottom: 1px solid #dddddd;
+      font-size: 1.5rem;
+    }
+    
+    td {
+      width: 100%;
+      border: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      &:first-child {
+        text-align: center;
+      }
+    }
+
+    margin-top: 2rem;
+
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 500px) {
+    label {
+      align-items: center;
+    }
+
+    thead {
+      display: none;
+    }
+
+    tr {
+      border-bottom: 1px solid #dddddd;
+    }
+    
+    td {
+      width: 100%;
+      border: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      &:first-child {
+        text-align: center;
+      }
+    }
+
+    margin-top: 2rem;
+
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+  }
+
 
   th {
     color: var(--text-body);
@@ -51,10 +116,6 @@ export const Table = styled.table`
     padding: 1rem 2rem;
     text-align: left;
     line-height: 1.5rem;
-
-    span {
-      margin-right: 1rem;
-    }
   }
 
   td {
@@ -73,7 +134,7 @@ export const Table = styled.table`
     }
 
     select {
-      background: transparent; /* importante para exibir o novo ícone */
+      background: transparent;
       font-size: 1rem;
       line-height: 1;
       border: 0;
@@ -88,3 +149,5 @@ export const Table = styled.table`
     }
   }
 `;
+
+

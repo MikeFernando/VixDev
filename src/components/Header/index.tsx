@@ -12,7 +12,7 @@ export function Header({ onOpenActivityModal }: HeaderProps) {
 
   return (
     <header className={styles.headerContainer}>
-      <h1>Vix Dev</h1>      
+      <h1>VixDev</h1>      
 
       <div className={styles.profile} onClick={onOpenActivityModal}>
           <button>

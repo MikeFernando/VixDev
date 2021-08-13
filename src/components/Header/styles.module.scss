@@ -1,6 +1,7 @@
 .headerContainer {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 
   max-width: 1120px;
   width: 100%;
@@ -13,15 +14,8 @@
     color: var(--blue);
     margin-right: 2rem;
   }
-}
-
-.profile {
-  display: flex;
-  align-items: center;
-  margin-left: auto;
 
   button {
-    margin-left: 1rem;
     padding: 0.5rem;
     width: 14rem;
     border-radius: 3rem;
@@ -33,6 +27,19 @@
 
     &:hover {
       filter: brightness(0.9);
+    }
+  }
+
+  @media (max-width: 500px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5rem;
+
+    div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
 }

@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from 'react';
 import { AiFillClockCircle } from 'react-icons/ai';
 import { MdCancel } from 'react-icons/md';
 import { RiSearchLine, RiTaskFill } from 'react-icons/ri';
-import { FaEdit } from 'react-icons/fa';
 
 import { ActivitiesContext } from '../../context/ActivitiesContext';
 
@@ -21,7 +20,7 @@ export function ActivitiesTable() {
       id: activity.id,
       name: activity.name,
       description: activity.description,
-      created_at: Intl.DateTimeFormat('pt-BR').format(new Date(activity.created_at)),
+      created_at: activity.created_at,
       status: activity.status
     }
   })
@@ -74,7 +73,7 @@ export function ActivitiesTable() {
             <th>Descrição</th>
             <th>Data</th>
             <th>Status</th>
-            <th><span>Editar</span>{<FaEdit size={24} color="#6933ff" />}</th>
+            <th>Editar</th>
           </tr>
         </thead>
         <tbody>
@@ -83,7 +82,7 @@ export function ActivitiesTable() {
               <tr key={activity.id}>
                 <td>{activity.name}</td>
                 <td>{activity.description}</td>
-                <td>{activity.created_at}</td>
+                <td>{Intl.DateTimeFormat('pt-BR').format(new Date(activity.created_at))}</td>
                 <td className="icons_status">
                   {activity.status === 'pending' && <AiFillClockCircle color='#61dcfb'  /> }
                   {activity.status === 'success' && <RiTaskFill color='#33cc95' />}
