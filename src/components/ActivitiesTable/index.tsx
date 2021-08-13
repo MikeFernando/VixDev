@@ -12,7 +12,7 @@ export function ActivitiesTable() {
   const { activities: initialActivities } = useContext(ActivitiesContext);
   const[ activities, updateActivities] = useState([]);
 
-  const listStatus = ['pending', 'success', 'canceled']
+  const listStatus = ['pendente', 'concluído', 'cancelado']
 
  useEffect(() => {
   const formattedActivities = initialActivities.map(activity => {
@@ -44,11 +44,11 @@ export function ActivitiesTable() {
       updateActivities(filteredActivities);
 
     switch(query) {
-      case 'pending': filteredActivities
+      case 'pendente': filteredActivities
         break;
-      case 'success': filteredActivities
+      case 'concluído': filteredActivities
         break;
-      case 'canceled': filteredActivities
+      case 'cancelado': filteredActivities
         break;
       case '': updateActivities(updateList.data.activities);
         break;
@@ -84,9 +84,9 @@ export function ActivitiesTable() {
                 <td>{activity.description}</td>
                 <td>{Intl.DateTimeFormat('pt-BR').format(new Date(activity.created_at))}</td>
                 <td className="icons_status">
-                  {activity.status === 'pending' && <AiFillClockCircle color='#61dcfb'  /> }
-                  {activity.status === 'success' && <RiTaskFill color='#33cc95' />}
-                  {activity.status === 'canceled' && <MdCancel color='#e52e54' />}
+                  {activity.status === 'pendente' && <AiFillClockCircle color='#61dcfb'  /> }
+                  {activity.status === 'concluído' && <RiTaskFill color='#33cc95' />}
+                  {activity.status === 'cancelado' && <MdCancel color='#e52e54' />}
                 </td>
                 <td>
                 <select

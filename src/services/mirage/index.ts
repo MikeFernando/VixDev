@@ -29,21 +29,21 @@ export function makeServer() {
               name: "Lavar o carro",
               description: "Aspirar o pó do carro",
               created_at: new Date("2021-08-11"),
-              status: "pending"
+              status: "pendente"
             },
             {
               id: 2,
               name: "Estudar",
               description: "Passar em processo seletivo",
               created_at: new Date("2021-08-10"),
-              status: "success"
+              status: "concluído"
             },
             {
               id: 3,
               name: "Jogar",
               description: "Jogar video game",
               created_at: new Date("2021-08-09"),
-              status: "canceled"
+              status: "cancelado"
             }
           ],
       })
