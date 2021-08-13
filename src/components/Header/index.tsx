@@ -12,11 +12,7 @@ export function Header({ onOpenActivityModal }: HeaderProps) {
 
   return (
     <header className={styles.headerContainer}>
-      <h1>Tasks</h1>
-      <label className={styles.searchBox}>
-        <input type="text" placeholder="Buscar por status" />
-        <RiSearchLine />
-      </label>
+      <h1>Vix Dev</h1>      
 
       <div className={styles.profile} onClick={onOpenActivityModal}>
           <button>

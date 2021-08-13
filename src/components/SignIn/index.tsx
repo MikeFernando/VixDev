@@ -23,7 +23,7 @@ export function SignIn() {
   return(
     <main className={styles.container}>
       <section className={styles.content}>
-        <h1>Tasks</h1>
+        <h1>VixDev</h1>
         <div>
           <form className={styles.form_signin} onSubmit={handleSubmit}>
             <input 
@@ -32,13 +32,6 @@ export function SignIn() {
               value={email}
               onChange={e => setEmail(e.target.value)}
             />
-            <input
-              type="password"
-              placeholder="Senha"
-              value={password}
-              onChange={e => setPassword(e.target.value )}
-            />
-
             <button type="submit">
               Entrar
             </button>

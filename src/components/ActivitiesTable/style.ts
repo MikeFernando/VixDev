@@ -2,9 +2,43 @@ import styled from "styled-components";
 
  
 export const Container = styled.div`
-  margin-top: 10rem;
   display: flex;
+  flex-direction: column;
+  
+  
 `;
+
+export const SearchBox = styled.label`
+    display: flex;
+    flex: 1;
+    align-items: center;
+
+    padding: 0.8rem 2rem;
+    max-width: 20rem;
+
+    position: relative;
+    background: var(--shape);
+    border-radius: 0.25rem;
+
+    input {
+      border: 1px solid var(--shape);
+      outline: 0;
+      font-size: 1rem;
+      width: 100%;
+      padding-right: 2rem;
+      color: var(--text-title);
+
+      &::placeholder {
+        color: var(--text-body);
+      }
+    }
+
+    svg {
+      width: 20px;
+      height: 20px;
+      color: var(--text-body);
+    }
+` 
 
 export const Table = styled.table`
   width: 100%;

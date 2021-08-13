@@ -13,39 +13,6 @@
     color: var(--blue);
     margin-right: 2rem;
   }
-
-  .searchBox {
-    display: flex;
-    flex: 1;
-    align-items: center;
-
-    padding: 0.8rem 2rem;
-    margin-left: 1rem;
-    max-width: 20rem;
-
-    position: relative;
-    background: var(--shape);
-    border-radius: 2rem;
-
-    input {
-      border: 1px solid var(--shape);
-      outline: 0;
-      font-size: 1rem;
-      width: 100%;
-      padding-right: 2rem;
-      color: var(--text-title);
-
-      &::placeholder {
-        color: var(--text-body);
-      }
-    }
-
-    svg {
-      width: 20px;
-      height: 20px;
-      color: var(--text-body);
-    }
-  }
 }
 
 .profile {

@@ -66,6 +66,12 @@ export function makeServer() {
         return this.schema.all('activity');
       });
 
+      this.get("/activities/:id", (schema, request) => {
+        let id = request.params.id
+      
+        return this.schema.find('activity', id)
+      })
+
       this.post('/activities', (schema, request) => {
         const data = JSON.parse(request.requestBody);
 
