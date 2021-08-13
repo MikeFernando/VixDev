@@ -14,17 +14,11 @@ type User = {
   password: string;
 }
 
-type Status = {
-  id: number;
-  description: string;
-}
-
 export function makeServer() {
   const server = createServer({
     models: {
       activity: Model.extend<Partial<Activities>>({}),
       user: Model.extend<Partial<User>>({}),
-      status: Model.extend<Partial<Status>>({}),
     },
 
     seeds(server) {
@@ -61,32 +55,17 @@ export function makeServer() {
       this.get('/users', () => {
         return this.schema.all('user');
       });
+
       this.post('/users', (schema, request) => {
         const data = JSON.parse(request.requestBody);
 
         return schema.create('user', data);
       });
 
-      this.get('/status', () => {
-        return [
-          {
-            id: 1,
-            description: "CONCLUÍDA"
-          },
-          {
-            id: 2,
-            description: "PENDENTE"
-          },
-          {
-            id: 3,
-            description: "CANCELADA"
-          }
-        ]
-      });
-
       this.get('/activities', () => {
         return this.schema.all('activity');
       });
+
       this.post('/activities', (schema, request) => {
         const data = JSON.parse(request.requestBody);
 

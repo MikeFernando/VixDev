@@ -31,8 +31,8 @@ type AuthProviderProps = {
 export const ActivitiesContext = createContext({} as AuthContextData);
 
 export function ActivityProvider({ children }: AuthProviderProps) {
-  const { push } = useRouter();
   const [ activities, setActivities ] = useState<Activities[]>([]);
+  const { push } = useRouter();
 
   useEffect(() => {
     api.get('/activities').then(response => {

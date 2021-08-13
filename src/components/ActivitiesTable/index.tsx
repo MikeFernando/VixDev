@@ -1,4 +1,4 @@
-import { FormEvent, useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import { AiFillClockCircle } from 'react-icons/ai';
 import { MdCancel } from 'react-icons/md';
 import { RiTaskFill } from 'react-icons/ri';
@@ -8,14 +8,11 @@ import { ActivitiesContext } from '../../context/ActivitiesContext';
 
 import { Container, Table } from './style';
 
-type SelectStatus = {
-  status: 'pending' | 'success' | 'canceled' ;
-}
-
-
 export function ActivitiesTable() {
   const { activities } = useContext(ActivitiesContext);
-  const [ typeStatus, setTypeStatus ] = useState<SelectStatus>();
+
+  const [selectedStatus, setSelectedStatus] = useState('');
+  const listStatus = ['pending', 'success', 'canceled']
 
   const formattedActivities = activities.map(activity => {
     return {
@@ -23,23 +20,9 @@ export function ActivitiesTable() {
       name: activity.name,
       description: activity.description,
       created_at: Intl.DateTimeFormat('pt-BR').format(new Date(activity.created_at)),
-      status:  activity.status === 'pending' ? 
-      (
-        activity.status && <AiFillClockCircle color='#61dcfb'  />
-
-      ) : activity.status === 'success' ? 
-      (
-        activity.status && <RiTaskFill color='#33cc95' />
-      ) : (
-        activity.status && <MdCancel color='#e52e54' />
-      )
+      status: activity.status
     }
   })
-
-  function handleChangeStatus(event: FormEvent) {
-    event.preventDefault()
-
-  }
 
   return (
     <Container>
@@ -55,34 +38,33 @@ export function ActivitiesTable() {
         </thead>
         <tbody>
           {formattedActivities.map(activity => {
+            console.log(activity)
             return (
               <tr key={activity.id}>
                 <td>{activity.name}</td>
                 <td>{activity.description}</td>
                 <td>{activity.created_at}</td>
-                <td className="icons_status">{activity.status}</td>
+                <td className="icons_status">
+                  {activity.status === selectedStatus && <AiFillClockCircle color='#61dcfb'  /> }
+                  {activity.status === selectedStatus && <RiTaskFill color='#33cc95' />}
+                  {activity.status === selectedStatus && <MdCancel color='#e52e54' />}
+                </td>
                 <td>
                   <form>
                     <label htmlFor={activity.name}></label>
-                    <select name={activity.name} id={activity.name}>
-                      <option
-                        value="pending"
-                        onChange={handleChangeStatus}
-                      >
-                        PENDENTE
-                      </option>
-                      <option
-                        value="success"
-                        onChange={handleChangeStatus}
-                      >
-                        CONCLUÍDA
-                      </option>
-                      <option
-                        value="canceled"
-                        onChange={handleChangeStatus}
-                      >
-                        CANCELADA
-                      </option>
+                    <select
+                      name={activity.name}
+                      id={activity.name}
+                      onChange={(e) => setSelectedStatus(e.target.value)}
+                    >
+                      {listStatus.map(item => (
+                        <option 
+                          key={activity.id} 
+                          value={activity.status}
+                        >
+                            {item}
+                        </option>
+                      ))}
                     </select>
                   </form>
                 </td>
@@ -94,3 +76,17 @@ export function ActivitiesTable() {
     </Container>
   )
 }
+// pending
+{/* <option value={item.status}>{activity.status}</option> */}
+
+// { selectedStatus === 'pending' ? 
+// (
+//   selectedStatus && <AiFillClockCircle color='#61dcfb'  />
+
+// ) : selectedStatus === 'success' ? 
+// (
+//   selectedStatus && <RiTaskFill color='#33cc95' />
+// ) : (
+//   selectedStatus && <MdCancel color='#e52e54' />
+// )
+// }
