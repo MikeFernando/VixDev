@@ -19,6 +19,8 @@ Toda a aplicação poderá ser construida utilizando um json ou uma array... ou 
 
 - [x] design
 - [x] responsividade
-- [x] deploy
+- [ ] deploy
 - [ ] autenticação
-- [ ] API própria
+- [x] API própria
+
+![Imgur](https://imgur.com/R9RvF6f.gif)
